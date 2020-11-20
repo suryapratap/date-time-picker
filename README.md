@@ -1,16 +1,13 @@
 Angular Date Time Picker
 ========================
 
-[![npm](https://img.shields.io/npm/v/@danielmoncada/angular-datetime-picker.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/@danielmoncada/angular-datetime-picker)
-[![npm](https://img.shields.io/npm/dm/@danielmoncada/angular-datetime-picker.svg)](https://www.npmjs.com/package/@danielmoncada/angular-datetime-picker)
-
 **Angular date time picker - Angular reusable UI component**
-**This package supports Angular 9+ / Angular 10**
+**This package supports Angular 11**
 
 Breaking Changes
 -------
- - The date/time picker has been updated to support Angular 9+, Angular 10, as well as compilation using Ivy.
- - If you need Ng8 support, please stick with: https://github.com/DanielYKPan/date-time-picker
+ - The date/time picker has been updated to support Angular 11, as well as compilation using Ivy.
+ - Droping moment in favor of dayjs
 
 Description
 -------
