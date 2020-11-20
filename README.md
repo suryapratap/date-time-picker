@@ -196,4 +196,4 @@ License
 
 Author
 -------
-**Maintained and updated by Daniel Moncada, original implementatiom by Daniel Pan**
+**Maintained and updated by Surya Pratap forked from Daniel Moncada, original implementatiom by Daniel Pan**
