@@ -3,14 +3,14 @@
  */
 
 import { Inject, Injectable, Optional, InjectionToken } from '@angular/core';
-import * as _moment from 'moment';
-import { Moment } from 'moment';
+import * as _dayjs from 'dayjs';
+import { Dayjs } from 'dayjs';
 import { DateTimeAdapter, OWL_DATE_TIME_LOCALE } from '../date-time-adapter.class';
 
-const moment = (_moment as any).default ? (_moment as any).default : _moment;
+const moment = (_dayjs as any).default ? (_dayjs as any).default : _dayjs;
 
 /** Configurable options for {@see MomentDateAdapter}. */
-export interface OwlMomentDateTimeAdapterOptions {
+export interface OwlDayjsDateTimeAdapterOptions {
     /**
      * Turns the use of utc dates on or off.
      * Changing this will change how the DateTimePicker output value.
@@ -27,14 +27,14 @@ export interface OwlMomentDateTimeAdapterOptions {
 }
 
 /** InjectionToken for moment date adapter to configure options. */
-export const OWL_MOMENT_DATE_TIME_ADAPTER_OPTIONS = new InjectionToken<OwlMomentDateTimeAdapterOptions>(
+export const OWL_DAYJS_DATE_TIME_ADAPTER_OPTIONS = new InjectionToken<OwlDayjsDateTimeAdapterOptions>(
     'OWL_MOMENT_DATE_TIME_ADAPTER_OPTIONS', {
     providedIn: 'root',
-    factory: OWL_MOMENT_DATE_TIME_ADAPTER_OPTIONS_FACTORY
+    factory: OWL_DAYJS_DATE_TIME_ADAPTER_OPTIONS_FACTORY
 });
 
 /** @docs-private */
-export function OWL_MOMENT_DATE_TIME_ADAPTER_OPTIONS_FACTORY(): OwlMomentDateTimeAdapterOptions {
+export function OWL_DAYJS_DATE_TIME_ADAPTER_OPTIONS_FACTORY(): OwlDayjsDateTimeAdapterOptions {
     return {
         useUtc: false,
         parseStrict: false
@@ -52,7 +52,7 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 
 
 @Injectable()
-export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
+export class DayjsDateTimeAdapter extends DateTimeAdapter<Dayjs> {
 
     private _localeData: {
         longMonths: string[],
@@ -64,7 +64,7 @@ export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
     };
 
     constructor(@Optional() @Inject(OWL_DATE_TIME_LOCALE) private owlDateTimeLocale: string,
-        @Optional() @Inject(OWL_MOMENT_DATE_TIME_ADAPTER_OPTIONS) private options?: OwlMomentDateTimeAdapterOptions) {
+        @Optional() @Inject(OWL_DAYJS_DATE_TIME_ADAPTER_OPTIONS) private options?: OwlDayjsDateTimeAdapterOptions) {
         super();
         this.setLocale(owlDateTimeLocale || moment.locale());
     }
@@ -84,47 +84,47 @@ export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
     }
 
 
-    public getYear(date: Moment): number {
+    public getYear(date: Dayjs): number {
         return this.clone(date).year();
     }
 
-    public getMonth(date: Moment): number {
+    public getMonth(date: Dayjs): number {
         return this.clone(date).month();
     }
 
-    public getDay(date: Moment): number {
+    public getDay(date: Dayjs): number {
         return this.clone(date).day();
     }
 
-    public getDate(date: Moment): number {
+    public getDate(date: Dayjs): number {
         return this.clone(date).date();
     }
 
-    public getHours(date: Moment): number {
-        return this.clone(date).hours();
+    public getHours(date: Dayjs): number {
+        return this.clone(date).hour();
     }
 
-    public getMinutes(date: Moment): number {
-        return this.clone(date).minutes();
+    public getMinutes(date: Dayjs): number {
+        return this.clone(date).minute();
     }
 
-    public getSeconds(date: Moment): number {
-        return this.clone(date).seconds();
+    public getSeconds(date: Dayjs): number {
+        return this.clone(date).second();
     }
 
-    public getTime(date: Moment): number {
+    public getTime(date: Dayjs): number {
         return this.clone(date).valueOf();
     }
 
-    public getNumDaysInMonth(date: Moment): number {
+    public getNumDaysInMonth(date: Dayjs): number {
         return this.clone(date).daysInMonth();
     }
 
-    public differenceInCalendarDays(dateLeft: Moment, dateRight: Moment): number {
-        return this.clone(dateLeft).diff(dateRight, 'days');
+    public differenceInCalendarDays(dateLeft: Dayjs, dateRight: Dayjs): number {
+        return this.clone(dateLeft).diff(dateRight, 'day');
     }
 
-    public getYearName(date: Moment): string {
+    public getYearName(date: Dayjs): string {
         return this.clone(date).format('YYYY');
     }
 
@@ -146,11 +146,11 @@ export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
         return this._localeData.dates;
     }
 
-    public toIso8601(date: Moment): string {
+    public toIso8601(date: Dayjs): string {
         return this.clone(date).format();
     }
 
-    public isEqual(dateLeft: Moment, dateRight: Moment): boolean {
+    public isEqual(dateLeft: Dayjs, dateRight: Dayjs): boolean {
 
         if (dateLeft && dateRight) {
             return this.clone(dateLeft).isSame(this.clone(dateRight));
@@ -159,7 +159,7 @@ export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
         return dateLeft === dateRight;
     }
 
-    public isSameDay(dateLeft: Moment, dateRight: Moment): boolean {
+    public isSameDay(dateLeft: Dayjs, dateRight: Dayjs): boolean {
 
         if (dateLeft && dateRight) {
             return this.clone(dateLeft).isSame(this.clone(dateRight), 'day');
@@ -168,11 +168,11 @@ export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
         return dateLeft === dateRight;
     }
 
-    public isValid(date: Moment): boolean {
+    public isValid(date: Dayjs): boolean {
         return this.clone(date).isValid();
     }
 
-    public invalid(): Moment {
+    public invalid(): Dayjs {
         return moment.invalid();
     }
 
@@ -180,32 +180,32 @@ export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
         return moment.isMoment(obj);
     }
 
-    public addCalendarYears(date: Moment, amount: number): Moment {
-        return this.clone(date).add({ years: amount });
+    public addCalendarYears(date: Dayjs, amount: number): Dayjs {
+        return this.clone(date).add(amount, "year");
     }
 
-    public addCalendarMonths(date: Moment, amount: number): Moment {
-        return this.clone(date).add({ months: amount });
+    public addCalendarMonths(date: Dayjs, amount: number): Dayjs {
+        return this.clone(date).add(amount, 'month');
     }
 
-    public addCalendarDays(date: Moment, amount: number): Moment {
-        return this.clone(date).add({ days: amount });
+    public addCalendarDays(date: Dayjs, amount: number): Dayjs {
+        return this.clone(date).add(amount, "day");
     }
 
-    public setHours(date: Moment, amount: number): Moment {
-        return this.clone(date).hours(amount);
+    public setHours(date: Dayjs, amount: number): Dayjs {
+        return this.clone(date).hour(amount);
     }
 
-    public setMinutes(date: Moment, amount: number): Moment {
-        return this.clone(date).minutes(amount);
+    public setMinutes(date: Dayjs, amount: number): Dayjs {
+        return this.clone(date).minute(amount);
     }
 
-    public setSeconds(date: Moment, amount: number): Moment {
-        return this.clone(date).seconds(amount);
+    public setSeconds(date: Dayjs, amount: number): Dayjs {
+        return this.clone(date).second(amount);
     }
 
-    public createDate(year: number, month: number, date: number): Moment;
-    public createDate(year: number, month: number, date: number, hours: number = 0, minutes: number = 0, seconds: number = 0): Moment {
+    public createDate(year: number, month: number, date: number): Dayjs;
+    public createDate(year: number, month: number, date: number, hours: number = 0, minutes: number = 0, seconds: number = 0): Dayjs {
         if (month < 0 || month > 11) {
             throw Error(`Invalid month index "${month}". Month index has to be between 0 and 11.`);
         }
@@ -236,15 +236,15 @@ export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
         return result;
     }
 
-    public clone(date: Moment): Moment {
+    public clone(date: Dayjs): Dayjs {
         return this.createMoment(date).clone().locale(this.getLocale());
     }
 
-    public now(): Moment {
+    public now(): Dayjs {
         return this.createMoment().locale(this.getLocale());
     }
 
-    public format(date: Moment, displayFormat: any): string {
+    public format(date: Dayjs, displayFormat: any): string {
         date = this.clone(date);
         if (!this.isValid(date)) {
             throw Error('MomentDateTimeAdapter: Cannot format invalid date.');
@@ -252,7 +252,7 @@ export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
         return date.format(displayFormat);
     }
 
-    public parse(value: any, parseFormat: any): Moment | null {
+    public parse(value: any, parseFormat: any): Dayjs | null {
         if (value && typeof value === 'string') {
             return this.createMoment(value, parseFormat, this.getLocale(), this.parseStrict);
         }
@@ -268,7 +268,7 @@ export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
      * (https://www.ietf.org/rfc/rfc3339.txt) and valid Date objects into valid Moments and empty
      * string into null. Returns an invalid date for all other values.
      */
-    deserialize(value: any): Moment | null {
+    deserialize(value: any): Dayjs | null {
         let date;
         if (value instanceof Date) {
             date = this.createMoment(value);
@@ -286,7 +286,7 @@ export class MomentDateTimeAdapter extends DateTimeAdapter<Moment> {
     }
 
     /** Creates a Moment instance while respecting the current UTC settings. */
-    private createMoment(...args: any[]): Moment {
+    private createMoment(...args: any[]): Dayjs {
         return (this.options && this.options.useUtc) ? moment.utc(...args) : moment(...args);
     }
 }

@@ -1,15 +1,11 @@
 Angular Date Time Picker
 ========================
-
-[![npm](https://img.shields.io/npm/v/@danielmoncada/angular-datetime-picker.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/@danielmoncada/angular-datetime-picker)
-[![npm](https://img.shields.io/npm/dm/@danielmoncada/angular-datetime-picker.svg)](https://www.npmjs.com/package/@danielmoncada/angular-datetime-picker)
-
 **Angular date time picker - Angular reusable UI component**
 **This package supports Angular 9+ / Angular 10**
 
 Breaking Changes
 -------
- - The date/time picker has been updated to support Angular 9+, Angular 10, as well as compilation using Ivy.
+ - The date/time picker has been updated to support Angular 11, as well as compilation using Ivy.
  - If you need Ng8 support, please stick with: https://github.com/DanielYKPan/date-time-picker
 
 Description
@@ -20,11 +16,11 @@ This picker is responsive design, so feel free to try it in your desktops, table
 How to Use
 -------
 
- 1. Install with [npm](https://www.npmjs.com):`npm install @danielmoncada/angular-datetime-picker --save`
+ 1. Install with [npm](https://www.npmjs.com):`npm install http://github.com/suryapratap/angular-datetime-picker --save`
  2. Add styles.
     If you are using Angular CLI, you can add this to your styles.css: 
     ```css
-    @import "~@danielmoncada/angular-datetime-picker/assets/style/picker.min.css";
+    @import "~@suryapratap/angular-datetime-picker/assets/style/picker.min.css";
     ``` 
     If you are not using the Angular CLI, you can include the picker.min.css via a ```<link>``` element in your index.html.
  3. Add __OwlDateTimeModule__ and __OwlNativeDateTimeModule__ to your __@NgModule__ like example below
@@ -33,7 +29,7 @@ How to Use
      import { BrowserModule } from '@angular/platform-browser';
      import { MyTestApp } from './my-test-app';
     
-     import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
+     import { OwlDateTimeModule, OwlNativeDateTimeModule } from '@suryapratap/angular-datetime-picker';
     
      @NgModule({
          imports: [ 
@@ -90,7 +86,7 @@ Developers need to make sure to provide the appropriate pieces for the picker to
 There are two pre-made modules, users need to import one of them or build your own one (learn more about this from [here](https://danielykpan.github.io/date-time-picker/#locale-formats)).
 
 - `OwlNativeDateTimeModule` - support for native JavaScript Date object
-- `OwlMomentDateTimeModule` - support for MomentJs
+- `OwlDayjsDateTimeModule` - support for Dayjs
 - `OwlUnixTimestampDateTimeModule` - support for milliseconds since Epoch (number)
 
 Properties for `owl-date-time`

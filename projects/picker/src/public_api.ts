@@ -9,17 +9,17 @@ export { OwlDateTimeIntl } from './lib/date-time/date-time-picker-intl.service';
 export { OwlNativeDateTimeModule } from './lib/date-time/adapter/native-date-time.module';
 
 export {
-  OWL_DATE_TIME_LOCALE_PROVIDER,
-  OWL_DATE_TIME_LOCALE,
-  DateTimeAdapter,
+    OWL_DATE_TIME_LOCALE_PROVIDER,
+    OWL_DATE_TIME_LOCALE,
+    DateTimeAdapter,
 
 } from './lib/date-time/adapter/date-time-adapter.class';
 
 export {
-  MomentDateTimeAdapter,
-  OwlMomentDateTimeAdapterOptions,
-  OWL_MOMENT_DATE_TIME_ADAPTER_OPTIONS
-} from './lib/date-time/adapter/moment-adapter/moment-date-time-adapter.class';
+    DayjsDateTimeAdapter as MomentDateTimeAdapter,
+    OwlDayjsDateTimeAdapterOptions as OwlMomentDateTimeAdapterOptions,
+    OWL_DAYJS_DATE_TIME_ADAPTER_OPTIONS as OWL_MOMENT_DATE_TIME_ADAPTER_OPTIONS
+} from './lib/date-time/adapter/dayjs-adapter/dayjs-date-time-adapter.class';
 
 export { OWL_DATE_TIME_FORMATS, OwlDateTimeFormats } from './lib/date-time/adapter/date-time-format.class';
 
@@ -27,7 +27,7 @@ export { OwlDateTimeInlineComponent } from './lib/date-time/date-time-inline.com
 
 export { OwlDateTimeComponent } from './lib/date-time/date-time-picker.component';
 
-export { OwlMomentDateTimeModule } from './lib/date-time/adapter/moment-adapter/moment-date-time.module';
+export { OwlDayjsDateTimeModule as OwlMomentDateTimeModule } from './lib/date-time/adapter/dayjs-adapter/dayjs-date-time.module';
 
 export * from './lib/date-time/calendar-body.component';
 

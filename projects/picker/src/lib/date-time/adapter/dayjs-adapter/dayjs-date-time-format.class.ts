@@ -3,7 +3,7 @@
  */
 import { OwlDateTimeFormats } from '../date-time-format.class';
 
-export const OWL_MOMENT_DATE_TIME_FORMATS: OwlDateTimeFormats = {
+export const OWL_DAYJS_DATE_TIME_FORMATS: OwlDateTimeFormats = {
     parseInput: 'l LT',
     fullPickerInput: 'l LT',
     datePickerInput: 'l',
