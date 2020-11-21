@@ -16,7 +16,7 @@ This picker is responsive design, so feel free to try it in your desktops, table
 How to Use
 -------
 
- 1. Install with [npm](https://www.npmjs.com):`npm install http://github.com/suryapratap/angular-datetime-picker --save`
+ 1. Install with [npm](https://www.npmjs.com):`npm i @suryapratap/angular-datetime-picker`
  2. Add styles.
     If you are using Angular CLI, you can add this to your styles.css: 
     ```css
@@ -179,20 +179,10 @@ Localization and DateTime Format
 -------
 Localization for different languages and formats is defined by `OWL_DATE_TIME_LOCALE` and `OWL_DATE_TIME_FORMATS`. You could learn more about this from [here](https://danielykpan.github.io/date-time-picker#locale-formats).
 
-
-Dependencies
--------
-none
-
-Demo
--------
-- Online doc is [here](https://daniel-projects.firebaseapp.com/owlng/date-time-picker)
-- Online demos (StackBlitz) are [here](https://stackblitz.com/edit/angular-vvp849) and [here](https://stackblitz.com/edit/angular-i7ykf5)
-
 License
 -------
 * License: MIT
 
 Author
 -------
-**Maintained and updated by Daniel Moncada, original implementatiom by Daniel Pan**
+**Maintained and updated by Surya Pratap forked from Daniel Moncada, original implementatiom by Daniel Pan**
