@@ -16,16 +16,20 @@ export class AppComponent implements AfterViewInit {
     @ViewChild('date_range_component', { static: true })
     date_range_component: OwlDateTimeComponent<AppComponent>;
     public selectedDates = [
-        dayjs('2019-03-11T08:00:00+11:00').tz('America/Los_Angeles'),
-        dayjs('2019-03-11T15:00:00+11:00').tz('America/Los_Angeles')
+        dayjs('2019-03-11T00:00:00Z'),
+        dayjs('2019-03-11T15:00:00Z')
     ];
 
 
-    currentValue: Date = new Date('4/21/2020, 12:00 AM');
-    endValue: Date = new Date('4/21/2020, 11:59 PM');
+    currentValue: Date = this.selectedDates[0]?.toDate();
+    endValue: Date = this.selectedDates[1]?.toDate();
 
-    open_once = false;
+    open_once = true;
 
     ngAfterViewInit() {
+    }
+
+    recordChanges(event) {
+        console.log(dayjs(event).format('YYYY-MM-DDTHH:mm:ss'));
     }
 }

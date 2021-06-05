@@ -18,7 +18,7 @@ export {
 export {
     DayjsDateTimeAdapter as MomentDateTimeAdapter,
     OwlDayjsDateTimeAdapterOptions as OwlMomentDateTimeAdapterOptions,
-    OWL_DAYJS_DATE_TIME_ADAPTER_OPTIONS as OWL_MOMENT_DATE_TIME_ADAPTER_OPTIONS
+    OWL_DAYJS_DATE_TIME_ADAPTER_OPTIONS
 } from './lib/date-time/adapter/dayjs-adapter/dayjs-date-time-adapter.class';
 
 export { OWL_DATE_TIME_FORMATS, OwlDateTimeFormats } from './lib/date-time/adapter/date-time-format.class';

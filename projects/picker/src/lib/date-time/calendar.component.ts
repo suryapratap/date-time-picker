@@ -52,10 +52,10 @@ export class OwlCalendarComponent<T>
 
         this._minDate = value
             ? this.dateTimeAdapter.createDate(
-                  this.dateTimeAdapter.getYear(value),
-                  this.dateTimeAdapter.getMonth(value),
-                  this.dateTimeAdapter.getDate(value)
-              )
+                this.dateTimeAdapter.getYear(value),
+                this.dateTimeAdapter.getMonth(value),
+                this.dateTimeAdapter.getDate(value)
+            )
             : null;
     }
     @Input()
@@ -69,10 +69,10 @@ export class OwlCalendarComponent<T>
 
         this._maxDate = value
             ? this.dateTimeAdapter.createDate(
-                  this.dateTimeAdapter.getYear(value),
-                  this.dateTimeAdapter.getMonth(value),
-                  this.dateTimeAdapter.getDate(value)
-              )
+                this.dateTimeAdapter.getYear(value),
+                this.dateTimeAdapter.getMonth(value),
+                this.dateTimeAdapter.getDate(value)
+            )
             : null;
     }
     @Input()
@@ -109,9 +109,9 @@ export class OwlCalendarComponent<T>
     get periodButtonText(): string {
         return this.isMonthView
             ? this.dateTimeAdapter.format(
-                  this.pickerMoment,
-                  this.dateTimeFormats.monthYearLabel
-              )
+                this.pickerMoment,
+                this.dateTimeFormats.monthYearLabel
+            )
             : this.dateTimeAdapter.getYearName(this.pickerMoment);
     }
 
@@ -266,7 +266,7 @@ export class OwlCalendarComponent<T>
      */
     private moveFocusOnNextTick = false;
 
-    /** 
+    /**
      * Date filter for the month and year view
      */
     public dateFilterForViews = (date: T) => {
@@ -280,7 +280,7 @@ export class OwlCalendarComponent<T>
         );
     }
 
-    public ngOnInit() {}
+    public ngOnInit() { }
 
     public ngAfterContentInit(): void {
         this._currentView = this.startView;
@@ -420,16 +420,16 @@ export class OwlCalendarComponent<T>
                 date1 &&
                 date2 &&
                 this.dateTimeAdapter.getYear(date1) ===
-                    this.dateTimeAdapter.getYear(date2) &&
+                this.dateTimeAdapter.getYear(date2) &&
                 this.dateTimeAdapter.getMonth(date1) ===
-                    this.dateTimeAdapter.getMonth(date2)
+                this.dateTimeAdapter.getMonth(date2)
             );
         } else if (this._currentView === 'year') {
             return !!(
                 date1 &&
                 date2 &&
                 this.dateTimeAdapter.getYear(date1) ===
-                    this.dateTimeAdapter.getYear(date2)
+                this.dateTimeAdapter.getYear(date2)
             );
         } else {
             return false;
