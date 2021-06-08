@@ -3,11 +3,21 @@
  */
 
 import { Inject, Injectable, Optional, InjectionToken } from '@angular/core';
-import * as _dayjs from 'dayjs';
 import { Dayjs } from 'dayjs';
 import { DateTimeAdapter, OWL_DATE_TIME_LOCALE } from '../date-time-adapter.class';
+import * as dayjs from 'dayjs';
+import * as utc from 'dayjs/plugin/utc';
+import * as LocalizedFormat from 'dayjs/plugin/localizedFormat';
+import * as localeData from 'dayjs/plugin/localeData';
+import * as  objectSupport from 'dayjs/plugin/objectSupport';
+import * as  timezone from 'dayjs/plugin/timezone';
+dayjs.extend(objectSupport);
+dayjs.extend(LocalizedFormat);
+dayjs.extend(localeData);
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
-const moment = (_dayjs as any).default ? (_dayjs as any).default : _dayjs;
+
 
 /** Configurable options for {@see MomentDateAdapter}. */
 export interface OwlDayjsDateTimeAdapterOptions {
@@ -66,13 +76,13 @@ export class DayjsDateTimeAdapter extends DateTimeAdapter<Dayjs> {
     constructor(@Optional() @Inject(OWL_DATE_TIME_LOCALE) private owlDateTimeLocale: string,
         @Optional() @Inject(OWL_DAYJS_DATE_TIME_ADAPTER_OPTIONS) private options?: OwlDayjsDateTimeAdapterOptions) {
         super();
-        this.setLocale(owlDateTimeLocale || moment.locale());
+        this.setLocale(owlDateTimeLocale || dayjs.locale());
     }
 
     public setLocale(locale: string) {
         super.setLocale(locale);
-
-        const momentLocaleData = moment.localeData(locale);
+        dayjs.locale(locale)
+        const momentLocaleData = dayjs.localeData();
         this._localeData = {
             longMonths: momentLocaleData.months(),
             shortMonths: momentLocaleData.monthsShort(),
@@ -85,47 +95,47 @@ export class DayjsDateTimeAdapter extends DateTimeAdapter<Dayjs> {
 
 
     public getYear(date: Dayjs): number {
-        return this.clone(date).year();
+        return (date).year();
     }
 
     public getMonth(date: Dayjs): number {
-        return this.clone(date).month();
+        return (date).month();
     }
 
     public getDay(date: Dayjs): number {
-        return this.clone(date).day();
+        return (date).day();
     }
 
     public getDate(date: Dayjs): number {
-        return this.clone(date).date();
+        return (date).date();
     }
 
     public getHours(date: Dayjs): number {
-        return this.clone(date).hour();
+        return (date).hour();
     }
 
     public getMinutes(date: Dayjs): number {
-        return this.clone(date).minute();
+        return (date).minute();
     }
 
     public getSeconds(date: Dayjs): number {
-        return this.clone(date).second();
+        return (date).second();
     }
 
     public getTime(date: Dayjs): number {
-        return this.clone(date).valueOf();
+        return (date).valueOf();
     }
 
     public getNumDaysInMonth(date: Dayjs): number {
-        return this.clone(date).daysInMonth();
+        return (date).daysInMonth();
     }
 
     public differenceInCalendarDays(dateLeft: Dayjs, dateRight: Dayjs): number {
-        return this.clone(dateLeft).diff(dateRight, 'day');
+        return (dateLeft).diff(dateRight, 'day');
     }
 
     public getYearName(date: Dayjs): string {
-        return this.clone(date).format('YYYY');
+        return (date).format('YYYY');
     }
 
     public getMonthNames(style: 'long' | 'short' | 'narrow'): string[] {
@@ -147,13 +157,13 @@ export class DayjsDateTimeAdapter extends DateTimeAdapter<Dayjs> {
     }
 
     public toIso8601(date: Dayjs): string {
-        return this.clone(date).format();
+        return (date).format();
     }
 
     public isEqual(dateLeft: Dayjs, dateRight: Dayjs): boolean {
 
         if (dateLeft && dateRight) {
-            return this.clone(dateLeft).isSame(this.clone(dateRight));
+            return (dateLeft).isSame((dateRight));
         }
 
         return dateLeft === dateRight;
@@ -162,46 +172,46 @@ export class DayjsDateTimeAdapter extends DateTimeAdapter<Dayjs> {
     public isSameDay(dateLeft: Dayjs, dateRight: Dayjs): boolean {
 
         if (dateLeft && dateRight) {
-            return this.clone(dateLeft).isSame(this.clone(dateRight), 'day');
+            return (dateLeft).isSame((dateRight), 'day');
         }
 
         return dateLeft === dateRight;
     }
 
     public isValid(date: Dayjs): boolean {
-        return this.clone(date).isValid();
+        return (date).isValid();
     }
 
     public invalid(): Dayjs {
-        return moment.invalid();
+        return dayjs('');
     }
 
     public isDateInstance(obj: any): boolean {
-        return moment.isMoment(obj);
+        return dayjs.isDayjs(obj);
     }
 
     public addCalendarYears(date: Dayjs, amount: number): Dayjs {
-        return this.clone(date).add(amount, "year");
+        return date.add(amount, "year");
     }
 
     public addCalendarMonths(date: Dayjs, amount: number): Dayjs {
-        return this.clone(date).add(amount, 'month');
+        return date.add(amount, 'month');
     }
 
     public addCalendarDays(date: Dayjs, amount: number): Dayjs {
-        return this.clone(date).add(amount, "day");
+        return (date).add(amount, "day");
     }
 
     public setHours(date: Dayjs, amount: number): Dayjs {
-        return this.clone(date).hour(amount);
+        return (date).hour(amount);
     }
 
     public setMinutes(date: Dayjs, amount: number): Dayjs {
-        return this.clone(date).minute(amount);
+        return (date).minute(amount);
     }
 
     public setSeconds(date: Dayjs, amount: number): Dayjs {
-        return this.clone(date).second(amount);
+        return (date).second(amount);
     }
 
     public createDate(year: number, month: number, date: number): Dayjs;
@@ -245,7 +255,7 @@ export class DayjsDateTimeAdapter extends DateTimeAdapter<Dayjs> {
     }
 
     public format(date: Dayjs, displayFormat: any): string {
-        date = this.clone(date);
+        date = (date);
         if (!this.isValid(date)) {
             throw Error('MomentDateTimeAdapter: Cannot format invalid date.');
         }
@@ -277,7 +287,7 @@ export class DayjsDateTimeAdapter extends DateTimeAdapter<Dayjs> {
             if (!value) {
                 return null;
             }
-            date = this.createMoment(value, moment.ISO_8601, this.parseStrict).locale(this.getLocale());
+            date = this.createMoment(value, 'YYYY-MM-DDTHH:mm:ssZ', this.parseStrict).locale(this.getLocale());
         }
         if (date && this.isValid(date)) {
             return date;
@@ -287,6 +297,6 @@ export class DayjsDateTimeAdapter extends DateTimeAdapter<Dayjs> {
 
     /** Creates a Moment instance while respecting the current UTC settings. */
     private createMoment(...args: any[]): Dayjs {
-        return (this.options && this.options.useUtc) ? moment.utc(...args) : moment(...args);
+        return (this.options && this.options.useUtc) ? dayjs.utc(...args) : dayjs(...args);
     }
 }
